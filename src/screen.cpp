@@ -78,6 +78,30 @@ void Screen::drawGridLines(){
 
     SDL_RenderPresent(renderer);
    
-    // wait two seconds
-    SDL_Delay(2000);	
+}
+
+int Screen::fillSquare(int xPos, int yPos){
+	if(xPos > board->getBoardWidth() || yPos > board->getBoardHeight() || xPos < 0 || yPos < 0){
+		printf("Error: Board Coordinates must be in the range:\n\tX: %d to %d\n\tY: %d to %d\n", 0, board->getBoardWidth(), 0, board->getBoardHeight());
+		return -1;
+	}
+
+	// choose the destination for the sprite
+    int xTranslation = 101 + xPos * grid_size;
+    int yTranslation = 51 + yPos * grid_size;
+    SDL_Rect destination = {xTranslation, yTranslation, grid_size - 2, grid_size - 2}; // the rectangle
+
+    // load the sprite
+	SDL_Surface* blockBMP = SDL_LoadBMP("img/pink-block.bmp");
+ 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, blockBMP );
+
+ 	// apply to scren
+	SDL_RenderCopy(renderer, texture, NULL, &destination);
+	SDL_RenderPresent(renderer); // copy to screen
+
+
+	SDL_Delay(1000);
+
+
+	return 0;
 }

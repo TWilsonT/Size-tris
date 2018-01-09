@@ -10,13 +10,14 @@ class Screen {
 		~Screen();
 
 		void drawGridLines();
+		int fillSquare(int xPos, int yPos);
 
 	private:
 		// screen dimension constants
 		const static int SCREEN_WIDTH = 800;
 		const static int SCREEN_HEIGHT = 600;
 
-		const static int grid_size = 20;
+		const static int grid_size = 21;
 
 		Board* board;
 		// the window we'll be rendering to

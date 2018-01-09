@@ -18,5 +18,11 @@ int main(int argc, char* args[]){
 	Screen screen(windowName, gameBoard);
 	screen.drawGridLines();
 
+	for(int i = 0; i < 12; i++){
+		for(int j = 0; j < 22; j++){
+			screen.fillSquare(i,j);
+		}
+	}
+
     return 0;
 }
