@@ -11,3 +11,11 @@ Board::Board(){
 		std::cout << "\n";
 	}
 }
+
+int Board::getBoardHeight(){
+	return BOARD_HEIGHT;
+}
+
+int Board::getBoardWidth(){
+	return BOARD_WIDTH;
+}

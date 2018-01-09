@@ -5,5 +5,5 @@
 
 PieceFactory::PieceFactory(Board b) {
 	board = &b;
-	std::cout << "Creating Piece Factory" << "\n";
+	std::cout << "Piece Factory Created" << "\n";
 }

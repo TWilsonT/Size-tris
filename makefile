@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = main.cpp src/piece.cpp src/board.cpp src/piece-factory.cpp src/block.cpp
+OBJS = main.cpp src/piece.cpp src/board.cpp src/piece-factory.cpp src/block.cpp src/screen.cpp
 
 #CC specifies which compiler we're using
 CC = g++

@@ -2,10 +2,6 @@
 #define BOARD_H
 // board.h
 
-// game board sizes
-const int BOARD_WIDTH = 24;
-const int BOARD_HEIGHT = 44 + 16;
-
 enum CellContents {
 	empty,
 	red,
@@ -13,10 +9,19 @@ enum CellContents {
 };
 
 class Board {
-	int gameBoard[BOARD_HEIGHT][BOARD_WIDTH]; // board must be super tall for the big version of straight piece
-
 	public:
 		Board();
+		int getBoardHeight();
+		int getBoardWidth();
+
+	private:
+		// game board sizes
+		const static int BOARD_WIDTH = 12;
+		const static int BOARD_HEIGHT = 22;
+		const static int TOP_PADDING = 16;
+
+		int gameBoard[BOARD_HEIGHT * 2][BOARD_WIDTH * 2 + TOP_PADDING]; // board must be super tall for the big version of straight piece
+
 };
 
 #endif
