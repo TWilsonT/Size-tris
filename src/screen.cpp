@@ -6,8 +6,8 @@
 #include "screen.h"
 #include "board.h"
 
-Screen::Screen(std::string windowName, Board b){
-	board = &b;
+Screen::Screen(std::string windowName, Board* b){
+	board = b;
 
     window = NULL;
     screenSurface = NULL;
@@ -50,41 +50,55 @@ Screen::~Screen(){
 }
 
 void Screen::drawGridLines(){
-    SDL_RenderClear(renderer);
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
-    int xCurr = 100;
-    int yCurr = 50;
+	int xCurr = 100;
+	int yCurr = 50;
 
-    int y1 = yCurr;
-    int y2 = y1 + board->getBoardHeight() * grid_size;
+	int y1 = yCurr;
+	int y2 = y1 + board->getBoardHeight() * grid_size;
 
-    int x1 = xCurr;
-    int x2 = x1 + board->getBoardWidth() * grid_size;
+	int x1 = xCurr;
+	int x2 = x1 + board->getBoardWidth() * grid_size;
 
-    while (xCurr <= x2){
-	    SDL_RenderDrawLine(renderer, xCurr, y1, xCurr, y2);
+	while (xCurr <= x2){
+		SDL_RenderDrawLine(renderer, xCurr, y1, xCurr, y2);
 
+		xCurr += grid_size;
+	}
 
-    	xCurr += grid_size;
-    }
+	while (yCurr <= y2){
+		SDL_RenderDrawLine(renderer, x1, yCurr, x2, yCurr);
 
-    while (yCurr <= y2){
-	    SDL_RenderDrawLine(renderer, x1, yCurr, x2, yCurr);
+		yCurr += grid_size;
+	}
 
+	SDL_RenderPresent(renderer);
 
-    	yCurr += grid_size;
-    }
+}
 
-    SDL_RenderPresent(renderer);
-   
+int Screen::drawPieces(){
+	int numRows = board->getBoardWidth();
+	int numCols = board->getBoardHeight();
+
+	for(int i = 0; i < numRows; i++){
+		for(int j = 0; j < numCols; j++){
+			if (board->squareIsFilled(i,j) == 0){
+				fillSquare(i,j);
+			}
+		}
+	}
+
+	return 0;
 }
 
 int Screen::fillSquare(int xPos, int yPos){
 	if(xPos > board->getBoardWidth() || yPos > board->getBoardHeight() || xPos < 0 || yPos < 0){
 		printf("Error: Board Coordinates must be in the range:\n\tX: %d to %d\n\tY: %d to %d\n", 0, board->getBoardWidth(), 0, board->getBoardHeight());
 		return -1;
-	}
+	 }
 
 	// choose the destination for the sprite
     int xTranslation = 101 + xPos * grid_size;
@@ -99,9 +113,10 @@ int Screen::fillSquare(int xPos, int yPos){
 	SDL_RenderCopy(renderer, texture, NULL, &destination);
 	SDL_RenderPresent(renderer); // copy to screen
 
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(blockBMP);
 
 	SDL_Delay(1000);
-
 
 	return 0;
 }

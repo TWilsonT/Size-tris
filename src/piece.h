@@ -18,7 +18,7 @@ class Piece {
 		Piece(PieceType type);
 
 	private:
-		Block blocks[4];
+		//Block blocks[4];
 };
 
 #endif

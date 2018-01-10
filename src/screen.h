@@ -6,10 +6,11 @@
 
 class Screen {
 	public:
-		Screen(std::string windowName, Board board);
+		Screen(std::string windowName, Board* board);
 		~Screen();
 
 		void drawGridLines();
+		int drawPieces();
 		int fillSquare(int xPos, int yPos);
 
 	private:

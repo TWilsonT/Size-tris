@@ -12,17 +12,13 @@
 
 int main(int argc, char* args[]){
 	Board gameBoard;
-	PieceFactory factory(gameBoard);
+	PieceFactory factory(&gameBoard);
 
 	std::string windowName = "Size-tris";
-	Screen screen(windowName, gameBoard);
-	screen.drawGridLines();
+	Screen screen(windowName, &gameBoard);
 
-	for(int i = 0; i < 12; i++){
-		for(int j = 0; j < 22; j++){
-			screen.fillSquare(i,j);
-		}
-	}
+	screen.drawGridLines();
+	screen.drawPieces();
 
     return 0;
 }

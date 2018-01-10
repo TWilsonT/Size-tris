@@ -6,7 +6,7 @@
 class PieceFactory {
 	Board* board;
 	public:
-		PieceFactory(Board b);
+		PieceFactory(Board* b);
 };
 
 #endif
