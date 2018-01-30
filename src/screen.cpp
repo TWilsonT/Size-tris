@@ -77,6 +77,7 @@ void Screen::drawGridLines(){
 
 	SDL_RenderPresent(renderer);
 
+
 }
 
 int Screen::drawPieces(){
@@ -115,8 +116,6 @@ int Screen::fillSquare(int xPos, int yPos){
 
 	SDL_DestroyTexture(texture);
 	SDL_FreeSurface(blockBMP);
-
-	SDL_Delay(1000);
 
 	return 0;
 }

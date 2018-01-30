@@ -9,16 +9,12 @@ Board::Board(){
 	for(int i = 0; i < BOARD_WIDTH * BOARD_HEIGHT; i++){
 		gameBoard[i] = empty;
 	}
-	gameBoard[1] = red;
-	gameBoard[13] = blue;
-	gameBoard[253] = red;
-	gameBoard[263] = blue;
 }
 
 Board::~Board(){
 	printf("DELETING GAME BOARD\n");
 	if (gameBoard != NULL){
-		delete gameBoard;
+		delete[] gameBoard;
 	}
 }
 
@@ -39,3 +35,12 @@ int Board::getBoardWidth(){
 	return BOARD_WIDTH;
 }
 
+void Board::setFilled(int xPos, int yPos){
+	int map = xPos * BOARD_HEIGHT + yPos;
+	gameBoard[map] = filled;
+}
+
+void Board::setEmpty(int xPos, int yPos){
+	int map = xPos * BOARD_HEIGHT + yPos;
+	gameBoard[map] = empty;
+}

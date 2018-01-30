@@ -5,18 +5,20 @@
 #include <SDL2/SDL.h>
 
 class Block {
-	int xPos;
-	int yPos;
 	public:
 		Block(int x, int y);
+		Block();
 		int moveLeft();
 		int moveRight();
 		int moveDown();
 		int moveUp();
+		int xPos;
+		int yPos;
 
 	private:
 		SDL_Surface* blockBMP;
  		SDL_Texture* texture;
+
 };
 
 #endif

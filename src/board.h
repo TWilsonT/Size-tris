@@ -11,12 +11,13 @@ class Board {
 		int testIntegrity();
 		int getBoardHeight();
 		int getBoardWidth();
+		void setFilled(int xPos, int yPos);
+		void setEmpty(int xPos, int yPos);
 		int squareIsFilled(int xPos, int yPos);
 
 		enum CellContents {
 			empty,
-			red,
-			blue,
+			filled,
 		};
 
 	private:

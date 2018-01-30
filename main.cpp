@@ -19,6 +19,14 @@ int main(int argc, char* args[]){
 
 	screen.drawGridLines();
 	screen.drawPieces();
+	SDL_Delay(1000);
+	
+	factory.dropActivePiece();
+
+	screen.drawGridLines();
+	screen.drawPieces();
+
+	SDL_Delay(1000);
 
     return 0;
 }

@@ -7,3 +7,8 @@ Block::Block(int x, int y) {
 	xPos = x;
 	yPos = y;
 }
+
+Block::Block(){
+	xPos = -1;
+	yPos = -1;
+}
